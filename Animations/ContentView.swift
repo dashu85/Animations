@@ -53,8 +53,18 @@ struct ContentView: View {
         
         Spacer()
         
+        // Animated Bindings
+        /* 
+         SwiftUI is examing the state before the binding changes and after the binding has changed and animated what happens between these two changes.
+         
+         In the following the animation modifier is attached directly onto the value and not the view!
+         */
+        
         return VStack {
-            Stepper("Scale amount", value: $animationAmount2.animation(), in: 1...10)
+            Stepper("Scale amount", value: $animationAmount2.animation(
+                .easeInOut(duration: 1)
+                .repeatCount(3, autoreverses: true)
+            ), in: 1...10)
             
             Spacer()
             
